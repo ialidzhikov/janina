@@ -6,4 +6,6 @@ gem 'sinatra-flash'
 
 gem 'rake'
 
+gem 'bcrypt', '3.1.11'
+
 gem 'sqlite3'

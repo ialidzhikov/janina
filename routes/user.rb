@@ -23,7 +23,7 @@ get '/user/login' do
 end
 
 post '/user/login' do
-  user = User.where(params).first
+  user = User.find_by(e_mail: params[:e_mail]).try(:authenticate, params[:password])
 
   if user
     session[:user] = user
