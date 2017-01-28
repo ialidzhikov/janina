@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'sinatra/activerecord'
+require 'sinatra/flash'
 
 Dir["#{__dir__}/models/*.rb"].each { |file| require_relative file }
 Dir["#{__dir__}/routes/*.rb"].each { |file| require_relative file }
@@ -10,5 +11,5 @@ enable :sessions
 #set :root, __dir__
 
 get '/' do
-  erb :index
+  erb :index, locals: session
 end

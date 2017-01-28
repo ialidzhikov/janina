@@ -1,0 +1,61 @@
+<h1>Edit Profile</h1>
+<div class="row">
+  <div class="col-lg-10">
+    <div class="well bs-component">
+      <form method="post" action"/profile/edit">
+        <fieldset>
+          <legend>Photo</legend>
+          <img class="media-object img-rounded" width="158px" height="158px" src="http://cp91279.biography.com/1000509261001/1000509261001_1822909398001_BIO-Biography-29-Innovators-Mark-Zuckerberg-115956-SF.jpg">
+          <div class="form-group">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox"> Delete photo
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPhoto">Or upload a new one</label>
+            <input type="file" id="inputPhoto">
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Personal</legend>
+          <div class="form-group">
+            <label for="inputGithub">Username in Github</label>
+            <div>
+              <input type="text" class="form-control github-input" id="inputGithub" name="github" value="<%= session[:user].github %>">
+              <span class="github-hint">It's time to create, if you don't have.</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputAbout">Tell us more about you</label>
+            <div>
+              <textarea class="form-control" id="inputAbout" name="about" rows="4"><%= session[:user].about %></textarea>
+            </div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Change password</legend>
+          <p class="help-block">Leave the fields empty if you don't want to change your password.</p>
+          <div class="form-group">
+            <label for="inputPassword" class="control-label">Password</label>
+            <div>
+              <input type="password" class="form-control half-width" id="inputPassword" name="password" placeholder="Password">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputConfirmPassword" class="control-label">Confirm Password</label>
+            <div>
+              <input type="password" class="form-control half-width" id="inputConfirmPassword" placeholder="Confirm Password">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="pull-right">
+              <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>

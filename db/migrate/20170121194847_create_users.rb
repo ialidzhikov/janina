@@ -5,6 +5,9 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.integer :faculty_number, null: false
       t.string :e_mail, null: false
       t.string :password, null: false
+
+      t.string :about
+      t.string :github
     end
   end
 end

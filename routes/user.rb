@@ -1,15 +1,45 @@
+get '/profile/edit' do
+  erb :profile, locals: session
+end
+
+post '/profile/edit' do
+  password = params['password']
+  session[:user].update(password: password) if !password.empty?
+
+  params.delete('password')
+  session[:user].update(params)
+
+  erb :profile, locals: session
+end
+
+get '/users' do
+  @users = User.all
+
+  erb :users
+end
+
 get '/user/login' do
   erb :login
 end
 
 post '/user/login' do
-  e_mail = params[:e_mail]
-  password = params[:password]
+  user = User.where(params).first
 
-  p e_mail
-  p password
+  if user
+    session[:user] = user
 
-  'Hello world'
+    redirect to '/'
+  else
+    flash.now[:error] = 'Invalid e-mail or password.'
+
+    erb :login
+  end
+end
+
+get '/logout' do
+  session.clear
+
+  redirect to '/'
 end
 
 get '/user/register' do
@@ -17,8 +47,7 @@ get '/user/register' do
 end
 
 post '/user/register' do
-  @user = User.create(params)
-  session[:user] = @user
+  session[:user] = User.create(params)
 
-  erb :index
+  redirect to '/'
 end

@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" media="screen">
   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
   <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
@@ -24,7 +25,7 @@
       </div>
       <div class="navbar-collapse collapse" id="navbar-main">
         <ul class="nav navbar-nav navbar-right">
-          <% unless @user %>
+          <% unless session[:user] %>
           <li>
             <a href="/user/login">Login</a>
           </li>
@@ -34,13 +35,13 @@
           <% else %>
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="e_mail">
-              <%= @user.e_mail %>
+              <%= session[:user].e_mail %>
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" aria-labelledby="e_mail">
-              <li><a href="#">Profile</a></li>
+              <li><a href="/profile/edit">Profile</a></li>
               <li class="divider"></li>
-              <li><a href="#">Logout</a></li>
+              <li><a href="/logout">Logout</a></li>
             </ul>
           </li>
           <% end %>
@@ -56,10 +57,13 @@
     <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
       <ul class="nav sidebar-nav">
         <li>
-          <a href="#">Home</a>
+          <a href="/">Home</a>
         </li>
         <li>
           <a href="#">Lectures</a>
+        </li>
+        <li>
+          <a href="/users">Users</a>
         </li>
       </ul>
     </nav>
@@ -74,7 +78,7 @@
       </button>
       <div class="container">
         <div class="row">
-          <div class="col-lg-8 col-lg-offset-2">
+          <div class="col-lg-10 col-lg-offset-2">
             <%= yield %>
           </div>
         </div>

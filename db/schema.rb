@@ -17,6 +17,8 @@ ActiveRecord::Schema.define(version: 20170121194847) do
     t.integer "faculty_number", null: false
     t.string  "e_mail",         null: false
     t.string  "password",       null: false
+    t.string  "about"
+    t.string  "github"
   end
 
 end
