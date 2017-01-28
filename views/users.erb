@@ -1,7 +1,7 @@
 <% @users.each do |user| %>
 <div class="media col-lg-6">
   <div class="media-left">
-      <img class="media-object img-rounded" width="120px" height="120px" src="http://cp91279.biography.com/1000509261001/1000509261001_1822909398001_BIO-Biography-29-Innovators-Mark-Zuckerberg-115956-SF.jpg">
+      <img class="media-object img-rounded" width="120px" height="120px" src="<%= user.photo.url %>">
   </div>
   <div class="media-body">
     <h3 class="media-heading">

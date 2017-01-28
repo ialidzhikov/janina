@@ -1,1 +1,8 @@
+# Database
 /db/*.sqlite3
+
+# Uploads
+/public/uploads/tmp
+/public/uploads/photos/*/*.jpg
+/public/uploads/photos/*/*.jpeg
+/public/uploads/photos/*/*.png

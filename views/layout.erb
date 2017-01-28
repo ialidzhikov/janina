@@ -25,7 +25,7 @@
       </div>
       <div class="navbar-collapse collapse" id="navbar-main">
         <ul class="nav navbar-nav navbar-right">
-          <% unless session[:user] %>
+          <% unless session[:e_mail] %>
           <li>
             <a href="/user/login">Login</a>
           </li>
@@ -35,7 +35,7 @@
           <% else %>
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="e_mail">
-              <%= session[:user].e_mail %>
+              <%= session[:e_mail] %>
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" aria-labelledby="e_mail">

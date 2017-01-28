@@ -1,13 +1,24 @@
 get '/profile/edit' do
+  @user = User.find_by(e_mail: session[:e_mail])
+
   erb :profile, locals: session
 end
 
 post '/profile/edit' do
-  password = params['password']
-  session[:user].update(password: password) if !password.empty?
+  @user = User.find_by(e_mail: session[:e_mail])
 
-  params.delete('password')
-  session[:user].update(params)
+  password = params['password']
+  unless password.empty?
+    @user.update(password: password)
+    params.delete('password')
+  end
+
+  if params['remove_photo']
+    @user.remove_photo!
+    @user.save
+  end
+
+  @user.update(params)
 
   erb :profile, locals: session
 end
@@ -26,7 +37,7 @@ post '/user/login' do
   user = User.find_by(e_mail: params[:e_mail]).try(:authenticate, params[:password])
 
   if user
-    session[:user] = user
+    session[:e_mail] = user.e_mail
 
     redirect to '/'
   else
@@ -47,7 +58,8 @@ get '/user/register' do
 end
 
 post '/user/register' do
-  session[:user] = User.create(params)
+  user = User.create(params)
+  session[:e_mail] = user.e_mail
 
   redirect to '/'
 end
