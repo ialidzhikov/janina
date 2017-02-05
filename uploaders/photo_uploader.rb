@@ -5,7 +5,7 @@ class PhotoUploader < CarrierWave::Uploader::Base
     %w(jpg jpeg png)
   end
 
-  def default_url(*args)
+  def default_url
     '/uploads/photos/default.png'
   end
 

@@ -38,6 +38,7 @@ post '/user/login' do
 
   if user
     session[:e_mail] = user.e_mail
+    session[:admin] = user.admin?
 
     redirect to '/'
   else
@@ -60,6 +61,7 @@ end
 post '/user/register' do
   user = User.create(params)
   session[:e_mail] = user.e_mail
+  session[:admin] = user.admin?
 
   redirect to '/'
 end

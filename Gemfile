@@ -8,6 +8,5 @@ gem 'rake'
 
 gem 'bcrypt', '3.1.11'
 gem 'carrierwave'
-gem 'mini_magick'
 
 gem 'sqlite3'

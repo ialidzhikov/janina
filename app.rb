@@ -12,7 +12,11 @@ Dir["#{__dir__}/routes/*.rb"].each { |file| require_relative file }
 set :environment, :development
 enable :sessions
 
-#set :root, __dir__
+helpers do
+  def admins_only
+    halt 401, 'Not authorized'  unless session[:admin]
+  end
+end
 
 get '/' do
   erb :index, locals: session

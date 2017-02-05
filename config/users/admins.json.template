@@ -1,0 +1,9 @@
+[
+	{
+		"full_name": "Admin",
+		"faculty_number": 12345,
+		"e_mail": "admin@janina.com",
+		"password": "123456",
+		"admin": true
+	}
+]

@@ -1,0 +1,33 @@
+<h1>Add Lecture</h1>
+<div class="row">
+  <div class="col-lg-8">
+    <div class="well bs-component">
+      <form class="form-horizontal" method="post" action="/lectures" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="inputName" class="col-lg-2 control-label">Name</label>
+          <div class="col-lg-10">
+            <input type="text" class="form-control" id="inpuName" name="name" placeholder="Name">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputContent" class="col-lg-2 control-label">Content</label>
+          <div class="col-lg-6" style="margin-top: 10px;">
+            <input type="file" id="inputContent" name="content">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputDate" class="col-lg-2 control-label">Date</label>
+          <div class="col-lg-4">
+            <input type="date" class="form-control" id="inputDate" name="date">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-lg-10 col-lg-offset-2">
+            <a href="/lectures" class="btn btn-default">Cancel</a>
+            <button type="submit" class="btn btn-primary">Add</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
