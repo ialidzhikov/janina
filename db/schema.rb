@@ -10,23 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170130203656) do
+ActiveRecord::Schema.define(version: 20170205113553) do
 
   create_table "lectures", force: :cascade do |t|
-    t.string "name",    null: false
+    t.string "name", null: false
     t.string "content", null: false
-    t.date   "date",    null: false
+    t.date "date", null: false
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "description", null: false
+    t.datetime "deadline", null: false
+    t.integer "max_points", null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string  "full_name",                       null: false
-    t.integer "faculty_number",                  null: false
-    t.string  "e_mail",                          null: false
-    t.string  "password_digest",                 null: false
-    t.boolean "admin",           default: false, null: false
-    t.string  "photo"
-    t.string  "about"
-    t.string  "github"
+    t.string "full_name", null: false
+    t.integer "faculty_number", null: false
+    t.string "e_mail", null: false
+    t.string "password_digest", null: false
+    t.boolean "admin", default: false, null: false
+    t.string "photo"
+    t.string "about"
+    t.string "github"
     t.index ["e_mail"], name: "index_users_on_e_mail", unique: true
     t.index ["faculty_number"], name: "index_users_on_faculty_number", unique: true
   end

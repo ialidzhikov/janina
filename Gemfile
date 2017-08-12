@@ -1,12 +1,19 @@
 source 'https://rubygems.org'
 
-gem 'sinatra'
+ruby '2.3.3'
+
+gem 'sinatra', '1.4.7'
+gem 'sinatra-reloader'
 gem 'sinatra-activerecord'
 gem 'sinatra-flash'
 
 gem 'rake'
 
-gem 'bcrypt', '3.1.11'
+gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', require: 'bcrypt'
 gem 'carrierwave'
+
+gem 'github-markup'
+gem 'commonmarker'
+gem 'i18n'
 
 gem 'sqlite3'

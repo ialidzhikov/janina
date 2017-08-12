@@ -27,7 +27,7 @@ get '/lecture/add' do
   erb :lecture_add
 end
 
-get '/lecture/:id/edit' do |id|
+get '/lectures/:id/edit' do |id|
   admins_only
 
   @lecture = Lecture.find(id)
@@ -35,7 +35,7 @@ get '/lecture/:id/edit' do |id|
   erb :lecture_edit
 end
 
-put '/lecture/:id' do |id|
+put '/lectures/:id' do |id|
   admins_only
 
   lecture = Lecture.find(id)

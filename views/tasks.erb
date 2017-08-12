@@ -1,0 +1,34 @@
+<h1>Tasks</h1>
+<div class="row">
+  <div class="col-lg-12">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <td class="text-center">#</td>
+          <td>Name</td>
+          <td>Deadline</td>
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+          <td colspan="3">
+            <a class="btn btn-sm btn-primary pull-right" href="/task/add">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add
+            </a>
+          </td>
+        </tr>
+      </tfoot>
+      <tbody>
+        <% @tasks.each do |task| %>
+        <tr>
+          <td class="text-center"><%= task.id %></td>
+          <td>
+            <a style="display: block;" href="/tasks/<%= task.id %>"><%= task.name %></a>
+          </td>
+          <td><%= I18n.l task.deadline %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

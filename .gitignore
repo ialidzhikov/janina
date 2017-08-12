@@ -6,6 +6,7 @@
 /public/uploads/photos/*/*.jpg
 /public/uploads/photos/*/*.jpeg
 /public/uploads/photos/*/*.png
+/public/uploads/lectures/*
 
 # Users
 /config/users/admins.json

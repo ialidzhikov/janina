@@ -23,3 +23,23 @@
 .half-width {
   width: 50%;
 }
+
+.task dl dt {
+  display: block;
+  float: left;
+  font-weight: bold;
+  width: 100px;
+}
+
+.task dl dd {
+  clear: right;
+  margin: 5px 0;
+}
+
+.button-with-icon-text {
+  margin-left: 5px;
+}
+
+.task p.closed {
+  font-weight: bold;
+}
