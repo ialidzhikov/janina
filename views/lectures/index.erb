@@ -33,10 +33,10 @@
           <td><%= lecture.date %></td>
           <% if @admin %>
           <td>
-            <a class="btn btn-default btn-xs" href="/lectures/<%= lecture.id %>/edit">
+            <a class="btn btn-xs btn-primary" href="/lectures/<%= lecture.id %>/edit">
               <span class="glyphicon glyphicon-pencil"></span>
             </a>
-            <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteModal"
+            <button class="btn btn-xs btn-danger" data-toggle="modal" data-target="#delete-modal"
                     data-name="<%= lecture.name %>" data-id="<%= lecture.id %>">
               <span class="glyphicon glyphicon-remove"></span>
             </button>
@@ -50,7 +50,7 @@
 </div>
 <!-- Delete lecture modal -->
 <% if @admin %>
-<div class="modal fade" id="deleteModal" role="dialog">
+<div class="modal fade" id="delete-modal" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">

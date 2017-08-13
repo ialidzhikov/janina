@@ -1,7 +1,7 @@
 get '/profile/edit' do
   @user = User.find_by(e_mail: session[:e_mail])
 
-  erb :profile, locals: session
+  erb :'users/profile', locals: session
 end
 
 post '/profile/edit' do
@@ -20,17 +20,17 @@ post '/profile/edit' do
 
   @user.update(params)
 
-  erb :profile, locals: session
+  erb :'users/profile', locals: session
 end
 
 get '/users' do
   @users = User.all
 
-  erb :users
+  erb :'users/index'
 end
 
 get '/user/login' do
-  erb :login
+  erb :'/users/login'
 end
 
 post '/user/login' do
@@ -45,7 +45,7 @@ post '/user/login' do
   else
     flash.now[:error] = 'Invalid e-mail or password.'
 
-    erb :login
+    erb :'/users/login'
   end
 end
 
@@ -56,7 +56,7 @@ get '/logout' do
 end
 
 get '/user/register' do
-  erb :register
+  erb :'users/register'
 end
 
 post '/user/register' do

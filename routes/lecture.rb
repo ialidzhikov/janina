@@ -2,7 +2,7 @@ get '/lectures' do
   @lectures = Lecture.all
   @admin = session[:admin]
 
-  erb :lectures
+  erb :'lectures/index'
 end
 
 post '/lectures' do
@@ -24,7 +24,7 @@ end
 get '/lecture/add' do
   admins_only
 
-  erb :lecture_add
+  erb :'lectures/add'
 end
 
 get '/lectures/:id/edit' do |id|
@@ -32,7 +32,7 @@ get '/lectures/:id/edit' do |id|
 
   @lecture = Lecture.find(id)
 
-  erb :lecture_edit
+  erb :'lectures/edit'
 end
 
 put '/lectures/:id' do |id|

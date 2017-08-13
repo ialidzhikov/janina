@@ -5,32 +5,37 @@
       <form method="post" action"/profile/edit" enctype="multipart/form-data">
         <fieldset>
           <legend>Photo</legend>
-          <img class="media-object img-rounded" width="150px" height="150px" src="<%= @user.photo.url %>">
+          <img class="media-object img-rounded" width="150px" height="150px"
+               src="<%= @user.photo.url %>">
           <div class="form-group">
             <div class="checkbox">
               <label>
-                <input type="checkbox" name="remove_photo"> Delete photo
+                <input type="checkbox" name="remove_photo">
+                <span>Delete photo</span>
               </label>
             </div>
           </div>
           <div class="form-group">
-            <label for="inputPhoto">Or upload a new one</label>
-            <input type="file" id="inputPhoto" name="photo">
+            <label for="input-photo">Or upload a new one</label>
+            <input type="file" id="input-photo" name="photo">
           </div>
         </fieldset>
         <fieldset>
           <legend>Personal</legend>
           <div class="form-group">
-            <label for="inputGithub">Username in Github</label>
+            <label for="input-github">Username in Github</label>
             <div>
-              <input type="text" class="form-control github-input" id="inputGithub" name="github" value="<%= @user.github %>">
+              <input type="text" class="form-control github-input"
+                     id="input-github" name="github" value="<%= @user.github %>">
               <span class="github-hint">It's time to create, if you don't have.</span>
             </div>
           </div>
           <div class="form-group">
-            <label for="inputAbout">Tell us more about you</label>
+            <label for="input-about">Tell us more about you</label>
             <div>
-              <textarea class="form-control" id="inputAbout" name="about" rows="4"><%= @user.about %></textarea>
+              <textarea class="form-control" id="input-about" name="about" rows="4">
+                <%= @user.about %>
+              </textarea>
             </div>
           </div>
         </fieldset>
@@ -38,15 +43,17 @@
           <legend>Change password</legend>
           <p class="help-block">Leave the fields empty if you don't want to change your password.</p>
           <div class="form-group">
-            <label for="inputPassword" class="control-label">Password</label>
+            <label for="input-password" class="control-label">Password</label>
             <div>
-              <input type="password" class="form-control half-width" id="inputPassword" name="password" placeholder="Password">
+              <input type="password" class="form-control half-width"
+                     id="input-password" name="password" placeholder="Password">
             </div>
           </div>
           <div class="form-group">
-            <label for="inputConfirmPassword" class="control-label">Confirm Password</label>
+            <label for="input-confirm-password" class="control-label">Confirm Password</label>
             <div>
-              <input type="password" class="form-control half-width" id="inputConfirmPassword" placeholder="Confirm Password">
+              <input type="password" class="form-control half-width"
+                     id="input-confirm-password" placeholder="Confirm Password">
             </div>
           </div>
           <div class="form-group">

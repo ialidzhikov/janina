@@ -26,6 +26,14 @@
           </div>
         </div>
         <div class="form-group">
+          <label for="input-max-points" class="col-lg-2 control-label">Points</label>
+          <div class="col-lg-3">
+            <input type="number" min="1" class="form-control"
+                   id="input-max-points" name="max_points"
+                   value="<%= @task.max_points %>">
+          </div>
+        </div>
+        <div class="form-group">
           <div class="col-lg-10 col-lg-offset-2">
             <a href="/tasks" class="btn btn-default">Cancel</a>
             <button type="submit" class="btn btn-primary">Save</button>

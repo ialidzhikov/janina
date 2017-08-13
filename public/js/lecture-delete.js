@@ -1,4 +1,4 @@
-$('#deleteModal').on('show.bs.modal', function (event) {
+$('#delete-modal').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget),
       name = button.data('name'),
       id = button.data('id'),
