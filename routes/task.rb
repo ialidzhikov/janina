@@ -44,7 +44,7 @@ put '/tasks/:id' do |id|
   task = Task.find(id)
 
   transient = params.select do |key, _|
-    [:name, :description, :deadline].include? key.to_sym
+    %i[name description deadline].include? key.to_sym
   end
   task.update(transient)
 

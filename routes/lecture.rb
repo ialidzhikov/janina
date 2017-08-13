@@ -41,7 +41,7 @@ put '/lectures/:id' do |id|
   lecture = Lecture.find(id)
 
   transient = params.select do |key, _|
-    [:name, :content, :date].include? key.to_sym
+    %i[name content date].include? key.to_sym
   end
   lecture.update(transient)
 

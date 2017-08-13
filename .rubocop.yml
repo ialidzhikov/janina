@@ -1,0 +1,13 @@
+AllCops:
+  Exclude:
+    - 'db/**/*'
+  TargetRubyVersion: 2.3
+
+Layout/EndOfLine:
+  EnforcedStyle: lf
+
+Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false

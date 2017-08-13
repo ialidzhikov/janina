@@ -2,7 +2,7 @@ class LectureUploader < CarrierWave::Uploader::Base
   storage :file
 
   def extension_whitelist
-    %w(pdf)
+    %w[pdf]
   end
 
   def store_dir
