@@ -1,68 +1,66 @@
 <h1>Edit Profile</h1>
 <div class="row">
-  <div class="col-lg-10">
-    <div class="well bs-component">
-      <form method="post" action"/profile/edit" enctype="multipart/form-data">
-        <fieldset>
-          <legend>Photo</legend>
-          <img class="media-object img-rounded" width="150px" height="150px"
-               src="<%= @user.photo.url %>">
-          <div class="form-group">
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" name="remove_photo">
-                <span>Delete photo</span>
-              </label>
-            </div>
+  <div class="well bs-component">
+    <form method="post" action"/profile/edit" enctype="multipart/form-data">
+      <fieldset>
+        <legend>Photo</legend>
+        <img class="media-object img-rounded" width="150px" height="150px"
+             src="<%= @user.photo.url %>">
+        <div class="form-group">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" name="remove_photo">
+              <span>Delete photo</span>
+            </label>
           </div>
-          <div class="form-group">
-            <label for="input-photo">Or upload a new one</label>
-            <input type="file" id="input-photo" name="photo">
+        </div>
+        <div class="form-group">
+          <label for="input-photo">Or upload a new one</label>
+          <input type="file" id="input-photo" name="photo">
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Personal</legend>
+        <div class="form-group">
+          <label for="input-github">Username in Github</label>
+          <div>
+            <input type="text" class="form-control github-input"
+                   id="input-github" name="github" value="<%= @user.github %>">
+            <span class="github-hint">It's time to create, if you don't have.</span>
           </div>
-        </fieldset>
-        <fieldset>
-          <legend>Personal</legend>
-          <div class="form-group">
-            <label for="input-github">Username in Github</label>
-            <div>
-              <input type="text" class="form-control github-input"
-                     id="input-github" name="github" value="<%= @user.github %>">
-              <span class="github-hint">It's time to create, if you don't have.</span>
-            </div>
+        </div>
+        <div class="form-group">
+          <label for="input-about">Tell us more about you</label>
+          <div>
+            <textarea class="form-control" id="input-about" name="about" rows="4">
+              <%= @user.about %>
+            </textarea>
           </div>
-          <div class="form-group">
-            <label for="input-about">Tell us more about you</label>
-            <div>
-              <textarea class="form-control" id="input-about" name="about" rows="4">
-                <%= @user.about %>
-              </textarea>
-            </div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Change password</legend>
+        <p class="help-block">Leave the fields empty if you don't want to change your password.</p>
+        <div class="form-group">
+          <label for="input-password" class="control-label">Password</label>
+          <div>
+            <input type="password" class="form-control half-width"
+                   id="input-password" name="password" placeholder="Password">
           </div>
-        </fieldset>
-        <fieldset>
-          <legend>Change password</legend>
-          <p class="help-block">Leave the fields empty if you don't want to change your password.</p>
-          <div class="form-group">
-            <label for="input-password" class="control-label">Password</label>
-            <div>
-              <input type="password" class="form-control half-width"
-                     id="input-password" name="password" placeholder="Password">
-            </div>
+        </div>
+        <div class="form-group">
+          <label for="input-confirm-password" class="control-label">Confirm Password</label>
+          <div>
+            <input type="password" class="form-control half-width"
+                   id="input-confirm-password" placeholder="Confirm Password">
           </div>
-          <div class="form-group">
-            <label for="input-confirm-password" class="control-label">Confirm Password</label>
-            <div>
-              <input type="password" class="form-control half-width"
-                     id="input-confirm-password" placeholder="Confirm Password">
-            </div>
+        </div>
+        <div class="form-group">
+          <div class="pull-right">
+            <button type="submit" class="btn btn-primary">Save</button>
           </div>
-          <div class="form-group">
-            <div class="pull-right">
-              <button type="submit" class="btn btn-primary">Save</button>
-            </div>
-          </div>
-        </fieldset>
-      </form>
-    </div>
+        </div>
+      </fieldset>
+    </form>
   </div>
 </div>
