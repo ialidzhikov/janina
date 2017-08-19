@@ -1,0 +1,19 @@
+<div class="task">
+  <h1><%= @task.name %> &mdash; My solution</h1>
+  <a href="/tasks/<%= @task.id %>">Back to the task</a>
+  <% if @task.closed? %>
+  <p class="closed">The deadline for submitting solutions has passed. You can no longer submit solutions.</p>
+  <% end %>
+  <form method="post" action="/tasks/<%= @task.id %>/solutions">
+    <div class="form-group">
+      <label for="input-code" class="control-label">Code</label>
+      <textarea type="text" class="form-control" id="input-code"
+                name="code" rows="10" <%= 'disabled' if @task.closed? %>><%= @code if @code %></textarea>
+    </div>
+    <% unless @task.closed? %>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+    <% end %>
+  </form>
+</div>

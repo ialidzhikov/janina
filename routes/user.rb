@@ -38,6 +38,7 @@ post '/user/login' do
              .try(:authenticate, params[:password])
 
   if user
+    session[:id] = user.id
     session[:e_mail] = user.e_mail
     session[:admin] = user.admin?
 

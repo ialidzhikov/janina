@@ -9,6 +9,7 @@ end
 
 get '/tasks' do
   @tasks = Task.all
+  @admin = session[:admin]
 
   erb :'tasks/index'
 end

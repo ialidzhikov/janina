@@ -1,9 +1,9 @@
 [
-	{
-		"full_name": "Ismail Alidzhikov",
-		"faculty_number": 71570,
-		"e_mail": "i.alidjikov@gmail.com",
-		"password": "123456",
-		"admin": true
-	}
+    {
+        "full_name": "Ismail Alidzhikov",
+        "faculty_number": 71570,
+        "e_mail": "i.alidjikov@gmail.com",
+        "password": "123456",
+        "admin": true
+    }
 ]
