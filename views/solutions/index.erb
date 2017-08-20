@@ -4,16 +4,18 @@
     <thead>
       <tr>
         <td>Name</td>
-        <td>Points</td>
+        <td class="text-center">Points (Max. Possible - <%= @solutions.first.task.max_points %>)</td>
       </tr>
     </thead>
     <tbody>
       <% @solutions.each do |solution| %>
       <tr>
         <td>
-          <a style="display: block;" href="#"><%= solution.user.full_name %></a>
+          <a style="display: block;" href="/tasks/<%= solution.task_id %>/solutions/<%= solution.id %>">
+            <%= solution.user.full_name %>
+          </a>
         </td>
-        <td>
+        <td class="text-center">
           <span><%= solution.points %></span>
         </td>
       </tr>

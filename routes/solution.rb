@@ -1,3 +1,15 @@
+require 'coderay'
+
+get '/tasks/:task_id/solutions/:id' do |task_id, id|
+  @user = User.find(session[:id])
+  @solution = Solution.find(id)
+  code = @solution.last_submission.code
+
+  @lines  = CodeRay.scan(code, :ruby).html(wrap: nil).split("\n")
+
+  erb :'solutions/show', locals: session
+end
+
 get '/tasks/:id/solutions' do |id|
   @solutions = Solution.where(task_id: id)
 
@@ -12,4 +24,13 @@ post '/tasks/:id/solutions' do |id|
   Submission.create(solution_id: solution.id, code: @code)
 
   erb :'my_solution/show', locals: session
+end
+
+put '/tasks/:task_id/solutions/:id' do |task_id, id|
+  admins_only
+
+  points = params[:points]
+  Solution.find(id).update(points: points)
+
+  redirect to "/tasks/#{task_id}/solutions/#{id}"
 end

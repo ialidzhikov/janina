@@ -62,6 +62,7 @@ end
 
 post '/user/register' do
   user = User.create(params)
+  session[:id] = user.id
   session[:e_mail] = user.e_mail
   session[:admin] = user.admin?
 

@@ -5,6 +5,7 @@ ruby '2.3.3'
 gem 'bcrypt',
     git: 'https://github.com/codahale/bcrypt-ruby.git', require: 'bcrypt'
 gem 'carrierwave'
+gem 'coderay'
 gem 'commonmarker'
 gem 'github-markup'
 gem 'i18n'

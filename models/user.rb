@@ -7,4 +7,9 @@ class User < ActiveRecord::Base
   mount_uploader :photo, PhotoUploader
 
   validates :e_mail, presence: true
+
+  def points
+    p id
+    Solution.where(user_id: id).sum(:points)
+  end
 end

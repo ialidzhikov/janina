@@ -43,3 +43,15 @@
 .task p.closed {
   font-weight: bold;
 }
+
+.code-line {
+  white-space: pre-wrap;
+}
+
+.leaderboard .rank {
+  width: 46px;
+}
+
+.leaderboard .photo {
+  width: 36px;
+}
