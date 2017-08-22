@@ -10,6 +10,9 @@ require 'carrierwave/processing/mini_magick'
 require 'i18n'
 require 'i18n/backend/fallbacks'
 
+require 'will_paginate'
+require 'will_paginate/active_record'
+
 Dir["#{__dir__}/models/*.rb"].each { |file| require_relative file }
 Dir["#{__dir__}/routes/*.rb"].each { |file| require_relative file }
 

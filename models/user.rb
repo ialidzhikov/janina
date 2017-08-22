@@ -1,6 +1,8 @@
 require_relative '../uploaders/photo_uploader'
 
 class User < ActiveRecord::Base
+  scope :students, -> { where(admin: false) }
+
   has_secure_password
   has_many :solutions
 
@@ -9,7 +11,6 @@ class User < ActiveRecord::Base
   validates :e_mail, presence: true
 
   def points
-    p id
     Solution.where(user_id: id).sum(:points)
   end
 end

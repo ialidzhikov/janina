@@ -1,7 +1,8 @@
 <% @users.each do |user| %>
-<div class="media col-lg-6">
+<div class="user media col-lg-6">
   <div class="media-left">
-      <img class="media-object img-rounded" width="120px" height="120px" src="<%= user.photo.url %>">
+      <img class="media-object img-rounded" width="120px" height="120px"
+           src="<%= user.photo.url %>">
   </div>
   <div class="media-body">
     <h3 class="media-heading">
@@ -20,3 +21,6 @@
   </div>
 </div>
 <% end %>
+<div class="col-lg-12 text-center">
+  <%= will_paginate @users %>
+</div>

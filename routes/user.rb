@@ -24,7 +24,7 @@ post '/profile/edit' do
 end
 
 get '/users' do
-  @users = User.all
+  @users = User.students.paginate(page: params[:page], per_page: 10)
 
   erb :'users/index'
 end
