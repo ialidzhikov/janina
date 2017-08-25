@@ -1,11 +1,11 @@
 require 'coderay'
 
-get '/tasks/:task_id/solutions/:id' do |task_id, id|
+get '/tasks/:task_id/solutions/:id' do |_, id|
   @user = User.find(session[:id])
   @solution = Solution.find(id)
   code = @solution.last_submission.code
 
-  @lines  = CodeRay.scan(code, :ruby).html(wrap: nil).split("\n")
+  @lines = CodeRay.scan(code, :ruby).html(wrap: nil).split("\n")
 
   erb :'solutions/show', locals: session
 end

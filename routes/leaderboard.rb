@@ -1,5 +1,5 @@
 get '/leaderboard' do
-  @users = User.all
+  @records = LeaderboardRecord.all
 
   erb :'leaderboard/index'
 end

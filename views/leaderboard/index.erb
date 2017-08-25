@@ -10,17 +10,17 @@
       </tr>
     </thead>
     <tbody>
-      <% @users.each do |user| %>
+      <% @records.each.with_index(1) do |record, i| %>
       <tr>
-        <td class="text-center">1</td>
+        <td class="text-center"><%= i %></td>
         <td>
           <img class="media-object img-rounded" width="30px" height="30px"
-               src="<%= user.photo.url %>">
+               src="<%= record.photo_url %>">
         </td>
         <td>
-          <a href="#"><%= user.full_name %></a>
+          <a href="#"><%= record.full_name %></a>
         </td>
-        <td class="text-center"><%= user.points %></td>
+        <td class="text-center"><%= record.total_points %></td>
       </tr>
       <% end %>
     </tbody>
