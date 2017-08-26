@@ -1,4 +1,5 @@
 require 'coderay'
+require 'github/markup'
 
 get '/tasks/:task_id/solutions/:id' do |_, id|
   @user = User.find(session[:id])

@@ -95,3 +95,46 @@
   color: white;
   text-decoration: none;
 }
+
+.solution article.comment {
+  margin: 5px 0;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.solution article.comment:nth-child(odd) {
+  background-color: whitesmoke;
+}
+
+.solution article.revision {
+  border: 1px solid #dfe4e4;
+  border-radius: 4px;
+  padding: 2em;
+  margin: 2em 0;
+}
+
+.solution article.comment aside {
+  float: right;
+  margin-bottom: 10px;
+  margin-left: 12px;
+}
+
+.solution article.comment aside a {
+  display: block;
+  text-align: center;
+}
+
+.solution article.comment .body, .solution article.comment .published-at {
+  margin-right: 200px;
+}
+
+.solution article.comment .published-at {
+  border-top: 1px solid #dfe4e4;
+  color: #666;
+  padding-top: 5px;
+}
+
+.solution article.comment .published-at a {
+  color: #666;
+  text-decoration: none;
+}

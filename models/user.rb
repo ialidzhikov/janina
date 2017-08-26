@@ -10,6 +10,10 @@ class User < ActiveRecord::Base
 
   validates :e_mail, presence: true
 
+  def first_name
+    full_name.split(' ').first
+  end
+
   def points
     Solution.where(user_id: id).sum(:points)
   end
