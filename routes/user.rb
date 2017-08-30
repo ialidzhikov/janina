@@ -1,3 +1,5 @@
+require_relative 'validators/user_validator'
+
 get '/profile/edit' do
   @user = User.find_by(e_mail: session[:e_mail])
 
@@ -37,17 +39,17 @@ post '/user/login' do
   user = User.find_by(e_mail: params[:e_mail])
              .try(:authenticate, params[:password])
 
-  if user
-    session[:id] = user.id
-    session[:e_mail] = user.e_mail
-    session[:admin] = user.admin?
-
-    redirect to '/'
-  else
+  unless user
     flash.now[:error] = 'Invalid e-mail or password.'
 
-    erb :'/users/login'
+    return erb :'/users/login'
   end
+
+  session[:id] = user.id
+  session[:e_mail] = user.e_mail
+  session[:admin] = user.admin?
+
+  redirect to '/'
 end
 
 get '/logout' do
@@ -61,7 +63,13 @@ get '/user/register' do
 end
 
 post '/user/register' do
-  user = User.create(params)
+  return erb :'/users/register' unless UserValidator.new.valid?(params, flash)
+
+  transient = params.select do |key, _|
+    %i[full_name faculty_number e_mail password].include? key.to_sym
+  end
+
+  user = User.create(transient)
   session[:id] = user.id
   session[:e_mail] = user.e_mail
   session[:admin] = user.admin?

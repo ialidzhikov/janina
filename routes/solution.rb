@@ -12,7 +12,7 @@ get '/tasks/:task_id/solutions/:id' do |_, id|
 end
 
 get '/tasks/:id/solutions' do |id|
-  @solutions = Solution.where(task_id: id)
+  @task = Task.find(id)
 
   erb :'solutions/index'
 end

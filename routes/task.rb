@@ -1,4 +1,5 @@
 require 'github/markup'
+require_relative 'validators/task_validator'
 
 get '/tasks/:id' do |id|
   @task = Task.find(id)
@@ -16,6 +17,8 @@ end
 
 post '/tasks' do
   admins_only
+
+  return erb :'tasks/add' unless TaskValidator.new.valid?(params, flash)
 
   description = File.read(params[:description][:tempfile], encoding: 'utf-8')
   params[:description] = description
@@ -50,12 +53,20 @@ end
 put '/tasks/:id' do |id|
   admins_only
 
-  task = Task.find(id)
-
+  @task = Task.find(id)
   transient = params.select do |key, _|
     %i[name description deadline max_points].include? key.to_sym
   end
-  task.update(transient)
+
+  if transient.include? 'description'
+    transient['description'] =
+      File.read(params[:description][:tempfile], encoding: 'utf-8')
+  else
+    transient['description'] = @task.description
+  end
+  return erb :'tasks/edit' unless TaskValidator.new.valid?(transient, flash)
+
+  @task.update(transient)
 
   redirect to '/tasks'
 end

@@ -1,4 +1,14 @@
 <h1>Edit Lecture</h1>
+<% if flash[:error] %>
+<div class="row">
+  <div class="col-lg-8">
+    <div class="alert alert-danger alert-dismissable fade in">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <%= flash[:error] %>
+    </div>
+  </div>
+</div>
+<% end %>
 <div class="row">
   <div class="col-lg-8">
     <div class="well bs-component">

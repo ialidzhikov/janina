@@ -1,3 +1,5 @@
+require_relative 'validators/lecture_validator'
+
 get '/lectures' do
   @lectures = Lecture.all
   @admin = session[:admin]
@@ -7,6 +9,8 @@ end
 
 post '/lectures' do
   admins_only
+
+  return erb :'lectures/add' unless LectureValidator.new.valid?(params, flash)
 
   Lecture.create(params)
 
@@ -38,12 +42,18 @@ end
 put '/lectures/:id' do |id|
   admins_only
 
-  lecture = Lecture.find(id)
+  @lecture = Lecture.find(id)
 
   transient = params.select do |key, _|
     %i[name content date].include? key.to_sym
   end
-  lecture.update(transient)
+
+  transient['content'] = @lecture.content unless transient.include? 'content'
+  unless LectureValidator.new.valid?(transient, flash)
+    return erb :'lectures/edit'
+  end
+
+  @lecture.update(transient)
 
   redirect to :lectures
 end
