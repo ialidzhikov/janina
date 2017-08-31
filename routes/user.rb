@@ -1,13 +1,13 @@
 require_relative 'validators/user_validator'
 
-get '/profile/edit' do
-  @user = User.find_by(e_mail: session[:e_mail])
+get '/profile/edit', allow: :user do
+  @user = User.find(session[:id])
 
-  erb :'users/profile', locals: session
+  erb :'users/profile'
 end
 
-post '/profile/edit' do
-  @user = User.find_by(e_mail: session[:e_mail])
+post '/profile/edit', allow: :user do
+  @user = User.find(session[:id])
 
   password = params['password']
   unless password.empty?
@@ -22,7 +22,7 @@ post '/profile/edit' do
 
   @user.update(params)
 
-  erb :'users/profile', locals: session
+  erb :'users/profile'
 end
 
 get '/users' do

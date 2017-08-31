@@ -1,12 +1,14 @@
 <div class="task">
   <h1><%= @task.name %></h1>
   <p>
-    <% if session[:e_mail] %>
+    <% if authenticated? %>
     <a class="btn btn-sm btn-primary" href="/tasks/<%= @task.id %>/my_solution">Submit Solution</a>
     <% end %>
+    <% if @task.closed? || admin? %>
     <p>
       <a href="/tasks/<%= @task.id %>/solutions">Submitted solutions</a>
     </p>
+    <% end %>
   </p>
   <dl>
     <dt>Deadline:</dt>

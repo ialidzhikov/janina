@@ -1,11 +1,11 @@
 <link rel="stylesheet" type="text/css" href="/css/coderay.css">
 <div class="solution">
-  <h1>Solution of <%= @solution.task.name %> from <%= @user.full_name %></h1>
+  <h1>Solution of <%= @solution.task.name %> from <%= @solution.user.full_name %></h1>
   <p>
     <a href="/tasks/<%= @solution.task.id %>/solutions">Back to all solutions</a>
   </p>
   <p>
-    <a href="#todo">To <%= @user.full_name %>'s profile</a>
+    <a href="#todo">To <%= @solution.user.full_name %>'s profile</a>
   </p>
   <h2>Code</h2>
   <div class="CodeRay">
@@ -14,6 +14,7 @@
     <% end %>
   </div>
   <br>
+  <% if admin? %>
   <div class="col-lg-12 col-lg-offset-6">
     <form class="form-horizontal" method="post" enctype="multipart/form-data"
           action="/tasks/<%= @solution.task.id %>/solutions/<%= @solution.id %>">
@@ -28,19 +29,20 @@
       </div>
     </form>
   </div>
+  <% end %>
   <h2>History (<%= @solution.submissions.count %> versions)</h2>
   <% @solution.submissions.each do |submission| %>
     <article class="revision">
-      <h3><%= @user.first_name %> updated his solution on <%= I18n.l submission.created_at %></h3>
+      <h3><%= @solution.user.first_name %> updated his solution on <%= I18n.l submission.created_at %></h3>
       <a href="#">Show diff</a>
       <% submission.comments.each do |comment| %>
       <article class="comment" id="comment-<%= comment.id %>">
         <aside>
           <a href="#">
             <img class="media-object img-rounded avatar" width="150px" height="150px"
-                 src="<%= @user.photo_url %>" alt="<%= @user.full_name %>">
+                 src="<%= comment.user.photo_url %>" alt="<%= comment.user.full_name %>">
           </a>
-          <a href="#"><%= @user.full_name %></a>
+          <a href="#"><%= comment.user.full_name %></a>
         </aside>
         <div class="body">
           <p><%= GitHub::Markup.render_s(GitHub::Markups::MARKUP_MARKDOWN, comment.body) %></p>
@@ -52,6 +54,7 @@
       <% end %>
     </article>
   <% end %>
+  <% if authenticated? %>
   <form method="post" action="/submissions/<%= @solution.last_submission.id %>/comments">
     <div class="form-group">
       <label for="input-comment" class="control-label">Comment</label>
@@ -62,4 +65,5 @@
       <button type="submit" class="btn btn-primary">Comment</button>
     </div>
   </form>
+  <% end %>
 </div>

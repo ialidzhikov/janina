@@ -13,6 +13,32 @@ require 'i18n/backend/fallbacks'
 require 'will_paginate'
 require 'will_paginate/active_record'
 
+helpers do
+  def authenticated?
+    session.include? :id
+  end
+
+  def admin?
+    session[:admin]
+  end
+
+  def student?
+    authenticated? && !admin?
+  end
+end
+
+register do
+  def allow(*roles)
+    condition do
+      if roles.include? :user
+        redirect '/user/login' unless authenticated?
+      elsif roles.include? :admin
+        redirect back unless admin?
+      end
+    end
+  end
+end
+
 Dir["#{__dir__}/models/*.rb"].each { |file| require_relative file }
 Dir["#{__dir__}/routes/*.rb"].each { |file| require_relative file }
 
@@ -26,12 +52,6 @@ configure do
   I18n.config.available_locales = %i[en bg]
 end
 
-helpers do
-  def admins_only
-    halt 401, 'Not authorized' unless session[:admin]
-  end
-end
-
 get '/' do
-  erb :index, locals: session
+  erb :index
 end

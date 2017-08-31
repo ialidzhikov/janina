@@ -1,4 +1,4 @@
-post '/submissions/:id/comments' do |id|
+post '/submissions/:id/comments', allow: :user do |id|
   Comment.create(submission_id: id, user_id: session[:id], body: params[:body])
   solution = Submission.find(id).solution
 

@@ -6,12 +6,12 @@
         <td class="text-center">#</td>
         <td>Name</td>
         <td>Deadline</td>
-        <% if @admin %>
+        <% if admin? %>
         <td>Actions</td>
         <% end %>
       </tr>
     </thead>
-    <% if @admin %>
+    <% if admin? %>
     <tfoot>
       <tr>
         <td colspan="4">
@@ -30,7 +30,7 @@
           <a style="display: block;" href="/tasks/<%= task.id %>"><%= task.name %></a>
         </td>
         <td><%= I18n.l task.deadline %></td>
-        <% if @admin %>
+        <% if admin? %>
         <td>
           <a class="btn btn-xs btn-primary" href="/tasks/<%= task.id %>/edit">
             <span class="glyphicon glyphicon-pencil"></span>
@@ -48,7 +48,7 @@
 </div>
 </div>
 <!-- Delete task modal -->
-<% if @admin %>
+<% if admin? %>
 <div class="modal fade" id="delete-modal" role="dialog">
 <div class="modal-dialog">
   <div class="modal-content">

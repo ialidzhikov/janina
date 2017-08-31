@@ -2,14 +2,11 @@ require_relative 'validators/lecture_validator'
 
 get '/lectures' do
   @lectures = Lecture.all
-  @admin = session[:admin]
 
   erb :'lectures/index'
 end
 
-post '/lectures' do
-  admins_only
-
+post '/lectures', allow: :admin do
   return erb :'lectures/add' unless LectureValidator.new.valid?(params, flash)
 
   Lecture.create(params)
@@ -17,31 +14,23 @@ post '/lectures' do
   redirect to '/lectures'
 end
 
-delete '/lectures/:id' do |id|
-  admins_only
-
+delete '/lectures/:id', allow: :admin do |id|
   Lecture.destroy(id)
 
   redirect to '/lectures'
 end
 
-get '/lecture/add' do
-  admins_only
-
+get '/lecture/add', allow: :admin do
   erb :'lectures/add'
 end
 
-get '/lectures/:id/edit' do |id|
-  admins_only
-
+get '/lectures/:id/edit', allow: :admin do |id|
   @lecture = Lecture.find(id)
 
   erb :'lectures/edit'
 end
 
-put '/lectures/:id' do |id|
-  admins_only
-
+put '/lectures/:id', allow: :admin do |id|
   @lecture = Lecture.find(id)
 
   transient = params.select do |key, _|

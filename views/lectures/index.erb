@@ -6,12 +6,12 @@
         <td class="text-center">#</td>
         <td>Lecture</td>
         <td>Date</td>
-        <% if @admin %>
+        <% if admin? %>
         <td>Actions</td>
         <% end %>
       </tr>
     </thead>
-    <% if @admin %>
+    <% if admin? %>
     <tfoot>
       <tr>
         <td colspan="4">
@@ -30,7 +30,7 @@
           <a href="<%= lecture.content.url %>"><%= lecture.name %></a>
         </td>
         <td><%= lecture.date %></td>
-        <% if @admin %>
+        <% if admin? %>
         <td>
           <a class="btn btn-xs btn-primary" href="/lectures/<%= lecture.id %>/edit">
             <span class="glyphicon glyphicon-pencil"></span>
@@ -48,7 +48,7 @@
 </div>
 </div>
 <!-- Delete lecture modal -->
-<% if @admin %>
+<% if admin? %>
 <div class="modal fade" id="delete-modal" role="dialog">
 <div class="modal-dialog">
   <div class="modal-content">

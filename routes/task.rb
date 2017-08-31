@@ -3,21 +3,17 @@ require_relative 'validators/task_validator'
 
 get '/tasks/:id' do |id|
   @task = Task.find(id)
-  @admin = session[:admin]
 
   erb :'tasks/show'
 end
 
 get '/tasks' do
   @tasks = Task.all
-  @admin = session[:admin]
 
   erb :'tasks/index'
 end
 
-post '/tasks' do
-  admins_only
-
+post '/tasks', allow: :admin do
   return erb :'tasks/add' unless TaskValidator.new.valid?(params, flash)
 
   description = File.read(params[:description][:tempfile], encoding: 'utf-8')
@@ -28,31 +24,23 @@ post '/tasks' do
   redirect to '/tasks'
 end
 
-delete '/tasks/:id' do |id|
-  admins_only
-
+delete '/tasks/:id', allow: :admin do |id|
   Task.destroy(id)
 
   redirect to '/tasks'
 end
 
-get '/task/add' do
-  admins_only
-
+get '/task/add', allow: :admin do
   erb :'tasks/add'
 end
 
-get '/tasks/:id/edit' do |id|
-  admins_only
-
+get '/tasks/:id/edit', allow: :admin do |id|
   @task = Task.find(id)
 
   erb :'tasks/edit'
 end
 
-put '/tasks/:id' do |id|
-  admins_only
-
+put '/tasks/:id', allow: :admin do |id|
   @task = Task.find(id)
   transient = params.select do |key, _|
     %i[name description deadline max_points].include? key.to_sym
