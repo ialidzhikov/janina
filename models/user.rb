@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   end
 
   def points
-    Solution.where(user_id: id).sum(:points)
+    return 0 if admin?
+    solutions.sum(:points)
   end
 end

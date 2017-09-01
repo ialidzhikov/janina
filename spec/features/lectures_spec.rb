@@ -6,17 +6,20 @@ RSpec.configure do |config|
 end
 
 RSpec.describe 'lectures', type: :feature do
-  def create_lecture(name, content, date)
-    admin = create :admin
-    login(admin.e_mail, admin.password)
-
-    visit '/lecture/add'
-
+  def fill_lecture_form(name, content, date)
     within 'form' do
       fill_in 'Name', with: name
       attach_file 'Content', content
       fill_in 'Date', with: date
     end
+  end
+
+  def create_lecture(name, content, date)
+    admin = create :admin
+    login(admin.e_mail, admin.password)
+
+    visit '/lecture/add'
+    fill_lecture_form(name, content, date)
 
     click_button 'Add'
   end
@@ -26,12 +29,7 @@ RSpec.describe 'lectures', type: :feature do
     login(admin.e_mail, admin.password)
 
     visit "/lectures/#{id}/edit"
-
-    within 'form' do
-      fill_in 'Name', with: name
-      attach_file 'Content', content
-      fill_in 'Date', with: date
-    end
+    fill_lecture_form(name, content, date)
 
     click_button 'Save'
   end

@@ -1,6 +1,7 @@
 AllCops:
   Exclude:
     - 'db/**/*'
+    - 'spec/**/*'
   TargetRubyVersion: 2.3
 
 Layout/EndOfLine:

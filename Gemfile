@@ -19,9 +19,9 @@ gem 'sqlite3'
 gem 'will_paginate', '~> 3.1.0'
 
 group :test do
-  gem 'rspec'
-  gem 'factory_girl'
   gem 'database_cleaner'
+  gem 'factory_girl'
+  gem 'rspec'
 
   gem 'capybara'
   gem 'nokogiri', '>= 1.6.7.rc'
