@@ -1,17 +1,11 @@
 require 'spec_helper'
+require_relative '../support/user_support'
+
+RSpec.configure do |config|
+  config.include UserSupport
+end
 
 RSpec.describe 'login', type: :feature do
-  def login(e_mail, password)
-    visit '/user/login'
-
-    within 'form' do
-      fill_in 'Email', with: e_mail
-      fill_in 'Password', with: password
-    end
-
-    click_button 'Login'
-  end
-
   context 'does not log in' do
     it 'with wrong e-mail' do
       create :student

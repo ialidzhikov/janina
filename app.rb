@@ -44,6 +44,7 @@ Dir["#{__dir__}/routes/*.rb"].each { |file| require_relative file }
 
 set :environment, :development
 enable :sessions
+set :session_secret, '*&(^B234'
 
 configure do
   I18n::Backend::Simple.send(:include, I18n::Backend::Fallbacks)

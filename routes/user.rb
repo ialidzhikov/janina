@@ -45,9 +45,7 @@ post '/user/login' do
     return erb :'/users/login'
   end
 
-  session[:id] = user.id
-  session[:e_mail] = user.e_mail
-  session[:admin] = user.admin?
+  store(user)
 
   redirect to '/'
 end
@@ -70,9 +68,15 @@ post '/user/register' do
   end
 
   user = User.create(transient)
+  store(user)
+
+  redirect to '/'
+end
+
+private
+
+def store(user)
   session[:id] = user.id
   session[:e_mail] = user.e_mail
   session[:admin] = user.admin?
-
-  redirect to '/'
 end
