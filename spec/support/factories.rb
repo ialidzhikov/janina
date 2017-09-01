@@ -19,4 +19,12 @@ FactoryGirl.define do
     password '123456'
     admin true
   end
+
+  factory :lecture do
+    name 'Basic Language Constructs'
+    content {
+      Rack::Test::UploadedFile.new(File.join(__dir__, '..', 'resources', 'lectures', 'sample.pdf'), 'application/jpg')
+    }
+    date Date.today
+  end
 end
